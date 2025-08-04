@@ -1,4 +1,4 @@
-version: '3.5'
+version: "3.5"
 services:
   zookeeper:
     image: zookeeper:3.7
@@ -8,9 +8,11 @@ services:
       clickhouse-network:
         ipv4_address: 172.23.0.10
   clickhouse01:
-    image: clickhouse/clickhouse-server:22.5
+    image: clickhouse/clickhouse-server:25.3
     container_name: clickhouse01
     hostname: clickhouse01
+    environment:
+      - CLICKHOUSE_SKIP_USER_SETUP=1
     networks:
       clickhouse-network:
         ipv4_address: 172.23.0.11
@@ -22,9 +24,11 @@ services:
     depends_on:
       - zookeeper
   clickhouse02:
-    image: clickhouse/clickhouse-server:22.5
+    image: clickhouse/clickhouse-server:25.3
     container_name: clickhouse02
     hostname: clickhouse02
+    environment:
+      - CLICKHOUSE_SKIP_USER_SETUP=1
     networks:
       clickhouse-network:
         ipv4_address: 172.23.0.12
@@ -33,9 +37,11 @@ services:
     depends_on:
       - zookeeper
   clickhouse03:
-    image: clickhouse/clickhouse-server:22.5
+    image: clickhouse/clickhouse-server:25.3
     container_name: clickhouse03
     hostname: clickhouse03
+    environment:
+      - CLICKHOUSE_SKIP_USER_SETUP=1
     networks:
       clickhouse-network:
         ipv4_address: 172.23.0.13
@@ -44,9 +50,11 @@ services:
     depends_on:
       - zookeeper
   clickhouse04:
-    image: clickhouse/clickhouse-server:22.5
+    image: clickhouse/clickhouse-server:25.3
     container_name: clickhouse04
     hostname: clickhouse04
+    environment:
+      - CLICKHOUSE_SKIP_USER_SETUP=1
     networks:
       clickhouse-network:
         ipv4_address: 172.23.0.14

@@ -28,6 +28,12 @@
     <tmp_path>/var/lib/clickhouse/tmp/</tmp_path>
     <user_files_path>/var/lib/clickhouse/user_files/</user_files_path>
 
+    <user_directories>
+        <users_xml>
+            <path>users.xml</path>
+        </users_xml>
+    </user_directories>
+
     <users_config>users.xml</users_config>
     <default_profile>default</default_profile>
     <default_database>default</default_database>
@@ -57,6 +63,52 @@
                 </replica>
             </shard>
         </company_cluster>
+
+        <public_ch>
+            <shard>
+                <replica>
+                    <host>clickhouse01</host>
+                    <port>9000</port>
+                </replica>
+                <replica>
+                    <host>clickhouse02</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+            <shard>
+                <replica>
+                    <host>clickhouse03</host>
+                    <port>9000</port>
+                </replica>
+                <replica>
+                    <host>clickhouse04</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+        </public_ch>
+
+        <defi>
+            <shard>
+                <replica>
+                    <host>clickhouse01</host>
+                    <port>9000</port>
+                </replica>
+                <replica>
+                    <host>clickhouse02</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+            <shard>
+                <replica>
+                    <host>clickhouse03</host>
+                    <port>9000</port>
+                </replica>
+                <replica>
+                    <host>clickhouse04</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+        </defi>
     </remote_servers>
 
     <zookeeper>
@@ -68,6 +120,18 @@
 
     <macros>
         <cluster>company_cluster</cluster>
+        <shard>${SHARD}</shard>
+        <replica>clickhouse${REPLICA}</replica>
+    </macros>
+
+    <macros>
+        <cluster>public_ch</cluster>
+        <shard>${SHARD}</shard>
+        <replica>clickhouse${REPLICA}</replica>
+    </macros>
+
+    <macros>
+        <cluster>defi</cluster>
         <shard>${SHARD}</shard>
         <replica>clickhouse${REPLICA}</replica>
     </macros>
